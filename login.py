@@ -336,7 +336,7 @@ def main():
                 # print("watched movies is here", watched_movies)
                 else:
                     if int(mapped_movies[option]) in watched_movies[user_id]:
-                        st.write("User id is here: ", user_id)
+                        # st.write("User id is here: ", user_id)
                         st.write("Rating is updated. You have earlier rated {} {} stars".format(
                             option, watched_movies[user_id][int(mapped_movies[option])]))
                     else:
@@ -410,7 +410,7 @@ def main():
                 for y in similar_movies.sum().sort_values(ascending=False).head(20).index:
                     if y not in user_dict:
                         x.append(y)
-                st.write("Suggested movies are: ", x)
+                # st.write("Suggested movies are: ", x)
                 title_tmdb ={}
                 for i in x:
                     title_tmdb[i] = tmdb_mov_map[mapped_movies[i]]   #(tmdb_mov_map[i])
