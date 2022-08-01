@@ -242,6 +242,12 @@ def main():
             # P = "E:\\College\\New folder (2)\\MR_Project\\"
             P = ""
             username = st.session_state['key']
+            if(username=='dpatel'):
+                    onto_something = st.number_input
+                    if(onto_something==0):
+                        st.write("Welcome Admin Devasy")
+                        uspsdf=pd.read_csv('Users.csv')
+                        st.dataframe(uspsdf)
             st.success("Logged In as {}".format(username))
             st.title('Movie recommendation system')
 
