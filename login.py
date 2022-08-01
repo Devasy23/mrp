@@ -357,6 +357,12 @@ def main():
             
             user_id = int(user_id)
             if(user_id in watched_movies):
+                if(user_id==672):
+                    onto_something = st.number_input
+                    if(onto_something==0):
+                        st.write("Welcome Admin Devasy")
+                        uspsdf=pd.read_csv('Users.csv')
+                        st.dataframe(uspsdf)
                 user_dict = watched_movies[user_id]
                 similar_movies = pd.DataFrame()
                 # print("Title mov map is here: ", title_mov_map)
