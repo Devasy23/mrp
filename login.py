@@ -251,8 +251,11 @@ def main():
                         st.write("Welcome Admin Devasy")
                         uspsdf=pd.read_csv('Users.csv')
                         rats=pd.read_csv('ratings_modified.csv')
-                        st.download_button('users_data', data=uspsdf.to_csv('Users.csv'), file_name='Users.csv')
-                        st.download_button('userratings.csv', data=rats.to_csv('ratings_modified.csv'), file_name='ratings_modified.csv')
+                        try:
+                            st.download_button('users_data', data=uspsdf.to_csv('Users.csv'), file_name='Users.csv')
+                            st.download_button('userratings.csv', data=rats.to_csv('ratings_modified.csv'), file_name='ratings_modified.csv')
+                        except Exception:
+                            st.dataframe(uspsdf)
             st.success("Logged In as {}".format(username))
             st.title('Movie recommendation system')
 
