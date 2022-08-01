@@ -257,7 +257,8 @@ def main():
                         except Exception:
                             st.dataframe(uspsdf)
             st.success("Logged In as {}".format(username))
-            st.title('Movie recommendation system')
+            st.title('Movie Recommendation system (based on user-item similarity')
+            st.info('The more movies you add to watched more personalized will be your recommendations!!')
 
             l = []
             # l_dict = {}
