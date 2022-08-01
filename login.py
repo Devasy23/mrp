@@ -144,6 +144,8 @@ def main():
                 #     pickle.dump(poster_path_dict, open('posterpaths.pkl', 'wb'))
 
                 st.title('Quick Movie Recommendations')
+                st.info('Login for more personalized recommendations!!')
+                st.info('You can Login/Signup from the top left corner')
                 option = st.selectbox('Enter Movie Name', (movies['title']))
                 result = st.button("Recommend")
 
@@ -183,6 +185,7 @@ def main():
                         img.append(output[i][0])
                         caption.append(output[i][1])
                     st.image(img, width=155, caption=caption, use_column_width= False)
+                    st.info('This part of the recommendation system works on content-based recomendations. To learn more about it https://www.geeksforgeeks.org/ml-content-based-recommender-system/')
 
 
 
@@ -247,7 +250,9 @@ def main():
                     if(onto_something==2402):
                         st.write("Welcome Admin Devasy")
                         uspsdf=pd.read_csv('Users.csv')
-                        st.dataframe(uspsdf)
+                        rats=pd.read_csv('ratings_modifies.csv')
+                        st.download_button('users_data', data=uspsdf.to_csv('Users.csv'), file_name='Users.csv')
+                        st.download_button('userratings.csv', data=rats.to_csv('ratings_modifies.csv'), file_name='ratings_modifies.csv')
             st.success("Logged In as {}".format(username))
             st.title('Movie recommendation system')
 
@@ -362,13 +367,9 @@ def main():
                 return similar_ratings
             
             user_id = int(user_id)
-            if(user_id in watched_movies):
-                if(user_id==672):
-                    onto_something = st.number_input
-                    if(onto_something==0):
-                        st.write("Welcome Admin Devasy")
-                        uspsdf=pd.read_csv('Users.csv')
-                        st.dataframe(uspsdf)
+            recommmend = st.button("Recommend Movies based on added movies")
+            if(user_id in watched_movies and recommmend):
+                
                 user_dict = watched_movies[user_id]
                 similar_movies = pd.DataFrame()
                 # print("Title mov map is here: ", title_mov_map)
@@ -419,7 +420,7 @@ def main():
                         continue
                 similar_movies.head(10)
                 x = [] # to store final recommendations
-                for y in similar_movies.sum().sort_values(ascending=False).head(20).index:
+                for y in similar_movies.sum().sort_values(ascending=False).head(30).index:
                     if y not in user_dict:
                         x.append(y)
                 # st.write("Suggested movies are: ", x)
