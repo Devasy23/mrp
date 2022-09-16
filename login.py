@@ -355,14 +355,18 @@ def main():
                         st.write("Rating is updated. You have earlier rated {} {} stars".format(
                             option, watched_movies[user_id][int(mapped_movies[option])]))
                     else:
-
+                        corrmax = 'https://drive.google.com/uc?export=download&id=117LEJZgUOeWxn-KIhRLNuRpKz6D8giiD'
+                        response = requests.get(corrmax)
+                        with open("corrMatrix.pkl", 'wb') as f:
+                            f.write(response.content)
+                        core_matrix = pd.read_pickle("corrMatrix.pkl", compression='bz2')
                         st.write("Movie added")
                     watched_movies[user_id][int(mapped_movies[option])] = rating
                     # pickle.dump(recmovi, open('pick.pkl', 'wb'))
                 pickle.dump(watched_movies, open(
                     P + 'userbased/watched1.pkl', 'wb'))
-            core_matrix = pickle.load(
-                open(P + 'userbased/corrMatrix.pkl', 'rb'))
+            # core_matrix = pickle.load(
+            #     open(P + 'userbased/corrMatrix.pkl', 'rb'))
 
             def get_similar(movie_name, rating):
                 similar_ratings = core_matrix[movie_name]*(rating-2.5)
